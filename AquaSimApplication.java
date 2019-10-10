@@ -27,28 +27,87 @@ public class AquaSimApplication
 
         // CONSTRUCT OBJECTS NEEDED FOR THE AQUARIUM SIMULATION.
         Random generator = new Random();
-        
-        int randNum = generator.nextInt(10);
+        int randNum = generator.nextInt(6);
         // Construct the aquarium.  Specify its dimensions when creating it.
         Aquarium aqua;                 // create reference to an Aquarium ...
         aqua = new Aquarium(100, 200); // ... object that has now been created
 
         // Construct fish and add them to the aquarium.
         //      CODE MISSING HERE!
-        AquaFish nemo = new AquaFish(aqua, Color.RED);
-        AquaFish dory = new AquaFish(aqua, Color.BLUE);
-        AquaFish marlin = new AquaFish(aqua, Color.BLUE);
+        
+        AquaFish nemo;
+        AquaFish dory;
+        AquaFish marlin;
+        AquaFish bruce;
+        
+        if(randNum==0)
+        nemo = new AquaFish(aqua, Color.RED);
+        else if(randNum==1)
+        nemo = new AquaFish(aqua, Color.ORANGE);
+        else if(randNum==2)
+        nemo = new AquaFish(aqua,Color.YELLOW);
+        else if(randNum==3)
+        nemo = new AquaFish(aqua, Color.GREEN);
+        else if(randNum==4)
+        nemo = new AquaFish(aqua, Color.BLUE);
+        else
+        nemo = new AquaFish(aqua, Color.MAGENTA);
+        
+        randNum = generator.nextInt(10);
+        
+        if(randNum==0 || randNum==1 ||randNum==2)
+        dory = new AquaFish(aqua, Color.RED);
+        else if(randNum==3 || randNum==4)
+        dory = new AquaFish(aqua, Color.ORANGE);
+        else if(randNum==5)
+        dory = new AquaFish(aqua,Color.YELLOW);
+        else if(randNum==6)
+        dory = new AquaFish(aqua, Color.GREEN);
+        else if(randNum==7)
+        dory = new AquaFish(aqua, Color.BLUE);
+        else
+        dory = new AquaFish(aqua, Color.MAGENTA);
+        
+        randNum = generator.nextInt(10);
+        
+        if(randNum==0)
+        marlin = new AquaFish(aqua, Color.RED);
+        else if(randNum==1)
+        marlin = new AquaFish(aqua, Color.ORANGE);
+        else if(randNum==2)
+        marlin = new AquaFish(aqua, Color.YELLOW);
+        else if(randNum==3 || randNum==4)
+        marlin = new AquaFish(aqua, Color.GREEN);
+        else if(randNum==5 || randNum==6 || randNum==7|| randNum==8)
+        marlin = new AquaFish(aqua, Color.BLUE);
+        else
+        marlin = new AquaFish(aqua, Color.MAGENTA);
+        
+        randNum = generator.nextInt(6);
+        
+        if(randNum==0)
+        bruce = new AquaFish(aqua, Color.RED);
+        else if(randNum==1)
+        bruce = new AquaFish(aqua, Color.ORANGE);
+        else if(randNum==2)
+        bruce = new AquaFish(aqua,Color.YELLOW);
+        else if(randNum==3)
+        bruce = new AquaFish(aqua, Color.GREEN);
+        else if(randNum==4)
+        bruce = new AquaFish(aqua, Color.BLUE);
+        else
+        bruce = new AquaFish(aqua, Color.MAGENTA);
         
         aqua.add(nemo);
         aqua.add(dory);
         aqua.add(marlin);
-        
+        aqua.add(bruce);
         // Construct a graphical user interface (GUI) to display and control
         // the simulation.  The user interface needs to know about the
         // aquarium, so we pass aqua to the user interface constructor.
         AquaSimGUI userInterface;              // create reference to GUI ...
         userInterface = new AquaSimGUI(aqua);  // ... and then GUI itself
-
+ 
         // Tell the user how to start the aquarium simulation.
         System.out.println("Press the Start button to start the simulation.");
 
@@ -64,7 +123,7 @@ public class AquaSimApplication
         // Make the fish move and redisplay.
         //      CODE MISSING HERE!
         
-        for(int i=1; i<10; i++)
+        for(int i=0; i<10; i++)
         {
         if(nemo.atWall())
         nemo.changeDir();
@@ -81,6 +140,10 @@ public class AquaSimApplication
         
         marlin.moveForward();
         
+        if(bruce.atWall())
+        bruce.changeDir();
+        
+        bruce.moveForward();
         
         userInterface.showAquarium();
         }
