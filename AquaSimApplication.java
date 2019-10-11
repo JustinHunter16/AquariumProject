@@ -28,6 +28,7 @@ public class AquaSimApplication
         // CONSTRUCT OBJECTS NEEDED FOR THE AQUARIUM SIMULATION.
         Random generator = new Random();
         int randNum = generator.nextInt(6);
+        int randNum2;
         // Construct the aquarium.  Specify its dimensions when creating it.
         Aquarium aqua;                 // create reference to an Aquarium ...
         aqua = new Aquarium(100, 200); // ... object that has now been created
@@ -83,17 +84,17 @@ public class AquaSimApplication
         else
         marlin = new AquaFish(aqua, Color.MAGENTA);
         
-        randNum = generator.nextInt(6);
+        randNum = generator.nextInt(7);
         
         if(randNum==0)
         bruce = new AquaFish(aqua, Color.RED);
-        else if(randNum==1)
+        else if(randNum==1 || randNum==2)
         bruce = new AquaFish(aqua, Color.ORANGE);
-        else if(randNum==2)
-        bruce = new AquaFish(aqua,Color.YELLOW);
         else if(randNum==3)
-        bruce = new AquaFish(aqua, Color.GREEN);
+        bruce = new AquaFish(aqua,Color.YELLOW);
         else if(randNum==4)
+        bruce = new AquaFish(aqua, Color.GREEN);
+        else if(randNum==5)
         bruce = new AquaFish(aqua, Color.BLUE);
         else
         bruce = new AquaFish(aqua, Color.MAGENTA);
@@ -106,14 +107,14 @@ public class AquaSimApplication
         // the simulation.  The user interface needs to know about the
         // aquarium, so we pass aqua to the user interface constructor.
         AquaSimGUI userInterface;              // create reference to GUI ...
-        userInterface = new AquaSimGUI(aqua);  // ... and then GUI itself
+        userInterface = new AquaSimGUI(aqua, true);  // ... and then GUI itself
  
         // Tell the user how to start the aquarium simulation.
         System.out.println("Press the Start button to start the simulation.");
-
+        
         // Now wait for the user to press the start button.
         userInterface.waitForStart();
-
+        int numberOfSteps = userInterface.getNumberOfSteps();
         // Draw the initial view of the aquarium and its contents.
         userInterface.showAquarium();
 
@@ -123,24 +124,32 @@ public class AquaSimApplication
         // Make the fish move and redisplay.
         //      CODE MISSING HERE!
         
-        for(int i=0; i<10; i++)
+        for(int i=0; i<numberOfSteps; i++)
         {
-        if(nemo.atWall())
+        randNum2 = generator.nextInt(4);
+        
+        if(nemo.atWall() || randNum2==0)
         nemo.changeDir();
         
         nemo.moveForward();
         
-        if(dory.atWall())
+        randNum2 = generator.nextInt(4);
+        
+        if(dory.atWall() || randNum2==0)
         dory.changeDir();
         
         dory.moveForward();
         
-        if(marlin.atWall())
+        randNum2 = generator.nextInt(4);
+        
+        if(marlin.atWall() || randNum2==0)
         marlin.changeDir();
         
         marlin.moveForward();
         
-        if(bruce.atWall())
+        randNum2 = generator.nextInt(4);
+        
+        if(bruce.atWall() || randNum2==0)
         bruce.changeDir();
         
         bruce.moveForward();
